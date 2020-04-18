@@ -1,0 +1,8 @@
+.DemographicForm-inputs-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.DemographicForm-autocomplete {
+  min-width: 200px;
+}

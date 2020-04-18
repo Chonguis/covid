@@ -1,0 +1,9 @@
+.Result-number {
+  font-size: 60px;
+  margin: 0 10px;
+}
+
+.Result-container {
+  padding: 20px 0;
+  flex: 1;
+}

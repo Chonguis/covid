@@ -1,0 +1,14 @@
+.displayResultsContainer {
+  text-align: center;
+}
+
+.resultsContainer {
+  display: flex;
+  margin: 0 30px;
+}
+
+.groupResults {
+  display: flex;
+  flex-flow: column;
+  flex: 1;
+}

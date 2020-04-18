@@ -1,0 +1,9 @@
+.SymptonChecker-submitted-data {
+  display: flex;
+  flex-direction: column;
+}
+.SymptonChecker-next-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 40px;
+}
