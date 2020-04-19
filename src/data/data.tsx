@@ -1,6 +1,4 @@
-const data: {
-  [key: string]: string | number;
-}[] = [
+const data = [
   {
     "municipality": "Aguada",
     "number": 2,

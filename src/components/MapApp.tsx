@@ -1,19 +1,24 @@
-import * as React from 'react';
-import './App.css';
+import React from 'react';
+import './MapApp.css';
 import EsriMap from './EsriMap/EsriMap';
 import data from '../data/data';
 
-class Map extends React.Component {
+class MapApp extends React.Component {
+  constructor(props: any){
+    super(props);
+  }
   render() {
     console.log(data);
     let municipalitiesData = data;
     let municipalityByName: {
-      municipality: string;
-      percent: number;
-      number: number;
-      [key: string]: string | number
-    }
+      [key: string]: {
+        municipality: string;
+        number: number | string;
+        percent: number | string;
+      }
+    } = {};
     municipalitiesData.forEach(municipality => {
+      console.log(municipality.municipality);
       municipalityByName[municipality.municipality] = municipality;
     });
     console.log(municipalityByName, 'municipalityByName');
@@ -25,4 +30,4 @@ class Map extends React.Component {
   }
 }
 
-export default Map;
+export default MapApp;

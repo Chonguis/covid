@@ -1,14 +1,13 @@
 import * as React from 'react';
-import { dojoRequire } from 'esri-loader';
-import EsriLoader from 'esri-loader-react';
-// export interface Props {
-//     onMapViewCreated?: (mapView) => void;
-// }
+import { loadModules, loadCss } from 'esri-loader';
+import './EsriMap.css';
+
+loadCss();
 
 interface Props {
     municipalityData: {
         [key: string]: {
-            name: string;
+            municipality: string;
             number: number | string;
             percent: number | string;
         },
@@ -19,8 +18,6 @@ interface State {
     loaded?: boolean
 }
 class EsriMap extends React.Component<Props, State> {
-    mapContainer;
-    mapView;
     constructor(props: any) {
         super(props);
         this.state = {
@@ -28,80 +25,29 @@ class EsriMap extends React.Component<Props, State> {
         }
     }
 
-    getVisualVariable = (number: number): string => {
-        // let rainbow = Rainbow.color();
-        // console.log(rainbow);
-        // rainbow.setSpectrum("white", "red");
-        // rainbow.setNumberRange(0, 25);
-        // let rainbowResult = rainbow.colorAt(number);
-        // console.log(rainbow, rainbowResult, "rainbow");
-        // return rainbowResult;
-        return "string";
-    }
-
-    getGradientColor = (percent: number):string => {
-        let start_color = "#ffc0cb";
-        let end_color = "#ff0000"
-        // strip the leading # if it's there
-        start_color = start_color.replace(/^\s*#|\s*$/g, '');
-        end_color = end_color.replace(/^\s*#|\s*$/g, '');
-     
-        // convert 3 char codes --> 6, e.g. `E0F` --> `EE00FF`
-        if(start_color.length == 3){
-          start_color = start_color.replace(/(.)/g, '$1$1');
-        }
-     
-        if(end_color.length == 3){
-          end_color = end_color.replace(/(.)/g, '$1$1');
-        }
-     
-        // get colors
-        var start_red = parseInt(start_color.substr(0, 2), 16),
-            start_green = parseInt(start_color.substr(2, 2), 16),
-            start_blue = parseInt(start_color.substr(4, 2), 16);
-     
-        var end_red = parseInt(end_color.substr(0, 2), 16),
-            end_green = parseInt(end_color.substr(2, 2), 16),
-            end_blue = parseInt(end_color.substr(4, 2), 16);
-     
-        // calculate new color
-        var diff_red: string | number = end_red - start_red;
-        var diff_green: string | number  = end_green - start_green;
-        var diff_blue: string | number  = end_blue - start_blue;
-     
-        diff_red = ( (diff_red * percent) + start_red ).toString(16).split('.')[0];
-        diff_green = ( (diff_green * percent) + start_green ).toString(16).split('.')[0];
-        diff_blue = ( (diff_blue * percent) + start_blue ).toString(16).split('.')[0];
-     
-        // ensure 2 digits by color
-        if( diff_red.length == 1 ) diff_red = '0' + diff_red
-        if( diff_green.length == 1 ) diff_green = '0' + diff_green
-        if( diff_blue.length == 1 ) diff_blue = '0' + diff_blue
-     
-        return '#' + diff_red + diff_green + diff_blue;
-    };
-
-    getGradient = (cases: number):string => {
-        if (cases > 25){
-            return "#FE0000";
-        } else if (cases > 20){
-            return "#FE3F02";
-        } else if (cases > 15){
-            return "#F97C00";
-        } else if (cases > 10){
-            return "#FB9E00";
-        } else if (cases > 5){
-            return "#FBD400";
-        } else if (cases >= 1){
-            return "#FDFD04";
-        } else {
-            return "#FFFFFF";
+    getGradient = (cases: number | string):string | void => {
+        if(typeof cases !== "string"){
+            if (cases > 25){
+                return "#FE0000";
+            } else if (cases > 20){
+                return "#FE3F02";
+            } else if (cases > 15){
+                return "#F97C00";
+            } else if (cases > 10){
+                return "#FB9E00";
+            } else if (cases > 5){
+                return "#FBD400";
+            } else if (cases >= 1){
+                return "#FDFD04";
+            } else {
+                return "#FFFFFF";
+            }
         }
     }
 
-    getUniqueValues = (): object[] => {
+    getUniqueValues = () => {
         if (this.props.municipalityData) {
-            let uniqueValues = [];
+            let uniqueValues: object[] = [];
             Object.keys(this.props.municipalityData).forEach(municipality => {
                 uniqueValues.push({
                     // All features with value of "North" will be blue
@@ -123,16 +69,13 @@ class EsriMap extends React.Component<Props, State> {
         });
     }
     createMap = ():void => {
-        dojoRequire([
+      loadModules([
             'esri/Map', 
             'esri/views/MapView',
             'esri/widgets/Search',
-            'esri/layers/FeatureLayer'], 
-            (Map, MapView, Search, FeatureLayer) => {
-
-            const searchWidget = new Search({
-                view: this.mapView
-            });
+            'esri/layers/FeatureLayer']).then(([
+              Map, MapView, Search, FeatureLayer
+            ]) => {
 
             // {"renderer":{"type":"uniqueValue","field1":"Nombre","defaultSymbol":null,
             // "uniqueValueInfos":[
@@ -157,14 +100,47 @@ class EsriMap extends React.Component<Props, State> {
                 layers: [municipalitiesLayer],
             })
 
-            this.mapView = new MapView({
-                container: this.mapContainer,
+            const mapView = new MapView({
+                container: "esrimap",
                 map: map,
             });
 
-            this.mapView.ui.add(searchWidget, {
+            const searchWidget = new Search({
+                view: mapView,
+            });
+
+            mapView.ui.add(searchWidget, {
                 position: "top-right",
                 // index: 2
+            });
+
+            let highlightSelect: any;
+            mapView.whenLayerView(municipalitiesLayer).then(function(layerView: any) {
+
+                mapView.on("click", (event: any) => {
+                    mapView.hitTest(event).then( (response: any) => {
+                        const feature = response.results[0].graphic;
+                        if (highlightSelect) {
+                            highlightSelect.remove();
+                        }
+                        highlightSelect = layerView.highlight(feature.attributes.OBJECTID);
+                    });
+                });
+
+
+                // let query = municipalitiesLayer.createQuery();
+                // query.outFields = ['*'];
+                // query.where = "Nombre='San Juan'";
+                // console.log('query', query);
+                // // if a feature is already highlighted, then remove the highlight
+                // municipalitiesLayer.queryFeatures(query).then((results: any) => {
+                //     if (highlightSelect) {
+                //         highlightSelect.remove();
+                //     }
+                //     console.log('results', results);
+                //     highlightSelect = layerView.highlight(results.features[0].attributes.OBJECTID);
+
+                // })
             });
 
             // this.props.onMapViewCreated(this.mapView);
@@ -175,16 +151,12 @@ class EsriMap extends React.Component<Props, State> {
     };
     render() {
         console.log(this.props.municipalityData, 'datadatadata');
-        // you can omit options and it defaults to the latest version
-        const options = {
-            url: 'https://js.arcgis.com/4.5/'
-            // url: '/arcgis_js_api/init.js'
-        };
+
         return (
-            <div style={{ height: '100%' }}>
-                <EsriLoader options={options} ready={this.ready.bind(this)} />
-                <div style={{ height: '100%' }} ref={node => this.mapContainer = node}></div>
-            </div>
+            <div
+                className="esrimap"
+                id='esrimap'
+            />
         );
     }
 }

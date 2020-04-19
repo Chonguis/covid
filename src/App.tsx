@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import SymptonChecker from './components/SymptonChecker/SymptonChecker';
 import Tracker from './components/Tracker/Tracker';
+import MapApp from './components/MapApp';
 
 function App() {
   return (
@@ -20,35 +21,35 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Covid-19
         </a>
       </header>
 
       <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">SymptonChecker</Link>
-            </li>
-            <li>
-              <Link to="/tracker">Tracker</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </nav>
+        <div className="App-body">
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">SymptonChecker</Link>
+              </li>
+              <li>
+                <Link to="/tracker">Tracker</Link>
+              </li>
+              <li>
+                <Link to="/map">Map</Link>
+              </li>
+            </ul>
+          </nav>
 
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        <Switch>
-          <Route exact path="/" component={SymptonChecker} />
-          <Route exact path="/tracker" component={Tracker} />
-          <Route exact path="/about" component={Abouty} />
-        </Switch>
-      </div>
-    </Router>
+          {/* A <Switch> looks through its children <Route>s and
+              renders the first one that matches the current URL. */}
+          <Switch>
+            <Route exact path="/" component={SymptonChecker} />
+            <Route exact path="/tracker" component={Tracker} />
+            <Route exact path="/map" component={MapApp} />
+          </Switch>
+        </div>
+      </Router>
     </div>
   );
 }
