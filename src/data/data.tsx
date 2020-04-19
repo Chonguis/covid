@@ -1,381 +1,399 @@
 const data = [
   {
+    "municipality": "Municipios de residencia",
+    "number": "",
+    "percent": "",
+
+  },
+  {
     "municipality": "Aguada",
     "number": 2,
-    "percent": 0.5,
-    
+    "percent": 0.4,
+
   },
   {
     "municipality": "Aguadilla",
     "number": 3,
-    "percent": 0.8,
-    
+    "percent": 0.5,
+
   },
   {
     "municipality": "Aguas Buenas",
     "number": 8,
-    "percent": 2,
-    
+    "percent": 14,
+
   },
   {
     "municipality": "Aibonito",
     "number": 3,
-    "percent": 0.8,
-    
+    "percent": 0.5,
+
   },
   {
-    "municipality": "Añasco",
-    "number": 4,
-    "percent": 1,
-    
+    "municipality": "Afasco",
+    "number": 5,
+    "percent": 0.9,
+
   },
   {
     "municipality": "Arecibo",
-    "number": 7,
-    "percent": 1.8,
-    
+    "number": 12,
+    "percent": 2.1,
+
+  },
+  {
+    "municipality": "Barceloneta",
+    "number": 1,
+    "percent": 0.2,
+
   },
   {
     "municipality": "Barranquitas",
     "number": 4,
-    "percent": 1,
-    
+    "percent": 0.7,
+
   },
   {
-    "municipality": "Bayamón",
-    "number": 29,
-    "percent": 7.3,
-    
+    "municipality": "Bayamon",
+    "number": 42,
+    "percent": 7.4,
+
   },
   {
     "municipality": "Cabo Rojo",
-    "number": 7,
-    "percent": 1.8,
-    
+    "number": 8,
+    "percent": 1.4,
+
   },
   {
     "municipality": "Caguas",
-    "number": 20,
-    "percent": 5.1,
-    
+    "number": 23,
+    "percent": 4,
+
   },
   {
     "municipality": "Camuy",
     "number": 1,
-    "percent": 0.3,
-    
+    "percent": 0.2,
+
   },
   {
-    "municipality": "Canóvanas",
-    "number": 3,
-    "percent": 0.8,
-    
+    "municipality": "Canovanas",
+    "number": 4,
+    "percent": 0.7,
+
   },
   {
     "municipality": "Carolina",
-    "number": 27,
+    "number": 39,
     "percent": 6.8,
-    
+
   },
   {
-    "municipality": "Cataño",
-    "number": 4,
-    "percent": 1,
-    
+    "municipality": "Catano",
+    "number": 5,
+    "percent": 0.9,
+
   },
   {
     "municipality": "Cayey",
-    "number": 2,
+    "number": 3,
     "percent": 0.5,
-    
+
   },
   {
     "municipality": "Ceiba",
     "number": 3,
-    "percent": 0.8,
-    
+    "percent": 0.5,
+
   },
   {
     "municipality": "Cidra",
     "number": 5,
-    "percent": 1.3,
-    
+    "percent": 0.9,
+
   },
   {
-    "municipality": "Corozal",
+    "municipality": "Cororal",
     "number": 2,
-    "percent": 0.5,
-    
+    "percent": 0.4,
+
   },
   {
     "municipality": "Dorado",
-    "number": 7,
-    "percent": 1.8,
-    
+    "number": 12,
+    "percent": 2.1,
+
   },
   {
-    "municipality": "Guánica",
+    "municipality": "Guanica",
     "number": 4,
-    "percent": 1,
-    
+    "percent": 0.7,
+
   },
   {
     "municipality": "Guayama",
     "number": 1,
-    "percent": 0.3,
-    
+    "percent": 0.2,
+
   },
   {
     "municipality": "Guaynabo",
-    "number": 30,
-    "percent": 7.6,
-    
+    "number": 42,
+    "percent": 7.4,
+
   },
   {
     "municipality": "Gurabo",
-    "number": 4,
-    "percent": 1,
-    
+    "number": 5,
+    "percent": 0.9,
+
   },
   {
     "municipality": "Hatillo",
     "number": 5,
-    "percent": 1.3,
-    
+    "percent": 0.9,
+
   },
   {
     "municipality": "Hormigueros",
-    "number": 5,
-    "percent": 1.3,
-    
+    "number": 6,
+    "percent": 1.1,
+
   },
   {
     "municipality": "Humacao",
     "number": 1,
-    "percent": 0.3,
-    
+    "percent": 0.2,
+
   },
   {
     "municipality": "Isabela",
-    "number": "",
-    "percent": 1.3,
-    
+    "number": 6,
+    "percent": 1.1,
+
   },
   {
-    "municipality": "Juana Díaz",
-    "number": 13,
-    "percent": 3.3,
-    
+    "municipality": "Juana Diaz",
+    "number": 14,
+    "percent": 2.5,
+
   },
   {
     "municipality": "Juncos",
     "number": 1,
-    "percent": 0.3,
-    
+    "percent": 0.2,
+
   },
   {
     "municipality": "Lajas",
     "number": 1,
-    "percent": 0.3,
-    
+    "percent": 0.2,
+
   },
   {
     "municipality": "Lares",
     "number": 2,
-    "percent": 0.5,
-    
+    "percent": 0.4,
+
   },
   {
     "municipality": "Las Piedras",
-    "number": 2,
-    "percent": 0.5,
-    
+    "number": 4,
+    "percent": 0.7,
+
   },
   {
-    "municipality": "Loíza",
+    "municipality": "Loiza",
     "number": 2,
-    "percent": 0.5,
-    
+    "percent": 0.4,
+
   },
   {
     "municipality": "Luquillo",
     "number": 4,
-    "percent": 1,
-    
+    "percent": 0.7,
+
   },
   {
-    "municipality": "Manatí",
-    "number": 2,
-    "percent": 0.5,
-    
+    "municipality": "Manati",
+    "number": 4,
+    "percent": 0.7,
+
   },
   {
     "municipality": "Maunabo",
     "number": 2,
-    "percent": 0.5,
-    
+    "percent": 0.4,
+
   },
   {
-    "municipality": "Mayagüez",
-    "number": 15,
-    "percent": 3.8,
-    
+    "municipality": "Mayaguez",
+    "number": 17,
+    "percent": 3,
+
   },
   {
     "municipality": "Moca",
     "number": 1,
-    "percent": 0.3,
-    
+    "percent": 0.2,
+
   },
   {
     "municipality": "Morovis",
-    "number": 1,
-    "percent": 0.3,
-    
+    "number": 3,
+    "percent": 0.5,
+
   },
   {
     "municipality": "Naguabo",
     "number": 1,
-    "percent": 0.3,
-    
+    "percent": 0.2,
+
   },
   {
     "municipality": "Naranjito",
     "number": 3,
-    "percent": 0.8,
-    
+    "percent": 0.5,
+
   },
   {
     "municipality": "Orocovis",
-    "number": 1,
-    "percent": 0.3,
-    
+    "number": 2,
+    "percent": 0.4,
+
+  },
+  {
+    "municipality": "Patillas",
+    "number": 2,
+    "percent": 0.4,
+
   },
   {
     "municipality": "Ponce",
-    "number": 8,
-    "percent": 2,
-    
+    "number": 9,
+    "percent": 1.6,
+
   },
   {
     "municipality": "Quebradillas",
-    "number": 9,
-    "percent": 2.3,
-    
+    "number": 16,
+    "percent": 2.8,
+
   },
   {
-    "municipality": "Rincón",
+    "municipality": "Rincon",
     "number": 1,
-    "percent": 0.3,
-    
+    "percent": 0.2,
+
   },
   {
-    "municipality": "Río Grande",
-    "number": 2,
-    "percent": 0.5,
-    
+    "municipality": "Rio Grande",
+    "number": 5,
+    "percent": 0.9,
+
   },
   {
-    "municipality": "Sábana Grande",
-    "number": 3,
-    "percent": 0.8,
-    
+    "municipality": "Sabana Grande",
+    "number": 5,
+    "percent": 0.9,
+
   },
   {
     "municipality": "Salinas",
     "number": 1,
-    "percent": 0.3,
-    
+    "percent": 0.2,
+
   },
   {
-    "municipality": "San Germán",
-    "number": 4,
-    "percent": 1,
-    
+    "municipality": "San German",
+    "number": 7,
+    "percent": 1.2,
+
   },
   {
     "municipality": "San Juan",
-    "number": 60,
-    "percent": 15.2,
-    
+    "number": 120,
+    "percent": 21.1,
+
   },
   {
     "municipality": "San Lorenzo",
     "number": 2,
-    "percent": 0.5,
-    
+    "percent": 0.4,
+
   },
   {
-    "municipality": "San Sebastián",
+    "municipality": "San Sebastian",
     "number": 7,
-    "percent": 1.8,
-    
+    "percent": 1.2,
+
   },
   {
     "municipality": "Santa Isabel",
     "number": 1,
-    "percent": 0.3,
-    
+    "percent": 0.2,
+
   },
   {
     "municipality": "Toa Alta",
-    "number": 8,
-    "percent": 2,
-    
+    "number": 13,
+    "percent": 2.3,
+
   },
   {
     "municipality": "Toa Baja",
-    "number": 12,
-    "percent": 3,
-    
+    "number": 15,
+    "percent": 2.6,
+
   },
   {
     "municipality": "Trujillo Alto",
-    "number": 12,
-    "percent": 3,
-    
+    "number": 25,
+    "percent": 4.4,
+
   },
   {
     "municipality": "Vega Alta",
-    "number": 7,
-    "percent": 1.8,
-    
+    "number": 8,
+    "percent": 1.4,
+
   },
   {
     "municipality": "Vega Baja",
-    "number": 3,
-    "percent": 0.8,
-    
+    "number": 5,
+    "percent": 0.9,
+
   },
   {
     "municipality": "Villalba",
-    "number": 1,
-    "percent": 0.3,
-    
+    "number": 2,
+    "percent": 0.4,
+
   },
   {
     "municipality": "Yabucoa",
-    "number": 1,
-    "percent": 0.3,
-    
+    "number": 2,
+    "percent": 0.4,
+
   },
   {
     "municipality": "Yauco",
-    "number": 7,
-    "percent": 1.8,
-    
+    "number": 8,
+    "percent": 1.4,
+
   },
   {
     "municipality": "Nueva York",
     "number": 5,
     "percent": "",
-    
+
   },
   {
-    "municipality": "No disponible",
-    "number": 324,
-    "percent": "",
-    
+    "municipality": "No disponible Nota: La informacion suministrad:",
+    "number": "322 por fuentes",
+    "percent": "externas al Departamnento",
+
   }
 ]
 

@@ -1,3 +1,15 @@
 .esrimap {
   height: 300px;
 }
+
+.esrimap:focus {
+  outline: 0;
+}
+
+.selectedNumbers {
+  display: flex;
+}
+
+.selectedNumbers > div {
+  flex: 1;
+}
